@@ -1,299 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QUEEN SEYA XMD | PREMIUM</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #00f2ff;
-      --secondary: #7000ff;
-      --accent: #ff007a;
-      --glass: rgba(255, 255, 255, 0.03);
-      --text: #e0e0e0;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>NURO MD V1 PAIR SITE</title>
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      font-family: 'Outfit', sans-serif;
-      background: #020205;
-      color: var(--text);
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    /* Animated Cyber Background */
-    .bg-visuals {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background: radial-gradient(circle at 50% 50%, #0a0a2e 0%, #000 100%);
-    }
+<style>
+/* ===== Reset ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
 
-    .glow-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      animation: drift 25s infinite alternate ease-in-out;
-      opacity: 0.3;
-    }
+/* ===== Body ===== */
+body{
+  background:#050505;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+/* ===== Bubble Background ===== */
+.bubble-bg{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  z-index:0;
+  pointer-events:none;
+}
 
-    @keyframes drift {
-      from { transform: translate(-10%, -10%) scale(1); }
-      to { transform: translate(20%, 20%) scale(1.2); }
-    }
+.bubble{
+  position:absolute;
+  bottom:-20px;
+  width:80px;
+  height:88px;
+  background:#00f2ff;
+  border-radius:50%;
+  opacity:6;
+  animation:floatUp linear infinite;
+}
 
-    /* Advanced Alert System */
-    #notification-hub {
-      position: fixed;
-      top: 25px;
-      right: 25px;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+@keyframes floatUp{
+  0%{
+    transform:translateY(0) scale(.5);
+    opacity:2;
+  }
+  100%{
+    transform:translateY(-150vh) scale(1);
+    opacity:0;
+  }
+}
 
-    .toast {
-      background: rgba(10, 10, 20, 0.9);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 16px 24px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      min-width: 320px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-      transform: translateX(120%);
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
+/* ===== Card ===== */
+.box{
+  width:340px;
+  padding:26px;
+  background:#0b0b0b;
+  border-radius:18px;
+  text-align:center;
+  position:relative;
+}
 
-    .toast.active { transform: translateX(0); }
-    .toast.success { border-left: 4px solid #00ff88; }
-    .toast.error { border-left: 4px solid var(--accent); }
-    .toast.info { border-left: 4px solid var(--primary); }
+/* ===== Animated Border ===== */
+@property --angle{
+  syntax:"<angle>";
+  initial-value:0deg;
+  inherits:false;
+}
 
-    /* Main Interface Card */
-    .glass-panel {
-      background: var(--glass);
-      backdrop-filter: blur(25px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 40px;
-      padding: 50px 40px;
-      width: 90%;
-      max-width: 440px;
-      text-align: center;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-      position: relative;
-    }
+.box::before,
+.box::after{
+  content:"";
+  position:absolute;
+  inset:-3px;
+  border-radius:20px;
+  background:conic-gradient(
+    from var(--angle),
+    transparent 65%,
+    #00f2ff,
+    #00bcd4,
+    #00f2ff
+  );
+  z-index:-1;
+  animation:spin 3.5s linear infinite;
+}
 
-    .brand-icon {
-      font-size: 3.5rem;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.4));
-      margin-bottom: 15px;
-    }
+.box::before{
+  filter:blur(1.4rem);
+  opacity:.75;
+}
 
-    h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem;
-      letter-spacing: 4px;
-      color: #fff;
-      margin-bottom: 5px;
-    }
+@keyframes spin{
+  to{--angle:360deg;}
+}
 
-    .owner-info {
-      font-size: 0.75rem;
-      letter-spacing: 3px;
-      color: var(--primary);
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-bottom: 35px;
-      display: block;
-      opacity: 0.8;
-    }
+/* ===== Icon ===== */
+.icon-box{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:#00f2ff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:0 auto 12px;
+}
 
-    .input-wrapper {
-      position: relative;
-      margin-bottom: 25px;
-    }
+.icon-box i{
+  color:#000;
+  font-size:32px;
+}
 
-    input {
-      width: 100%;
-      padding: 18px 25px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      color: #fff;
-      font-size: 1rem;
-      outline: none;
-      transition: 0.3s;
-    }
+/* ===== Titles ===== */
+h3{
+  color:#00f2ff;
+  font-size:26px;
+  font-weight:700;
+}
 
-    input:focus {
-      border-color: var(--primary);
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 0 20px rgba(0, 242, 255, 0.15);
-    }
+.desc{
+  color:white;
+  background-color:none;
+  font-size:13px;
+  font-weight: 100;
+  margin:6px 0 18px;
+  
+  
+}
+.h6{
+    color:none;
+    font-family: Arial;
+    background-color:#00f2ff;
+    border-radius: 12px;
+    outline:#ff22ff;
+    font-size:12px;
+    font-weight:500;
+}
 
-    .btn-submit {
-      width: 100%;
-      padding: 18px;
-      border: none;
-      border-radius: 20px;
-      background: linear-gradient(90deg, var(--secondary), var(--primary));
-      color: #fff;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.4s;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
+/* ===== Input ===== */
+.input-container{
+  background:#111;
+  border-radius:12px;
+  padding:8px;
+  margin-top:10px;
+  border:1px solid #1f1f1f;
+}
 
-    .btn-submit:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(112, 0, 255, 0.4);
-    }
+.input-container input{
+  width:100%;
+  background:transparent;
+  border:none;
+  outline:none;
+  color:#fff;
+  padding:12px;
+  font-size:14px;
+}
 
-    #pair-display {
-      margin-top: 30px;
-      padding: 20px;
-      background: rgba(0, 242, 255, 0.05);
-      border: 1px dashed var(--primary);
-      border-radius: 15px;
-      display: none;
-      cursor: pointer;
-    }
+/* ===== Button ===== */
+.input-container button{
+  width:100%;
+  margin-top:12px;
+  background:#00f2ff;
+  border:none;
+  border-radius:12px;
+  padding:12px;
+  font-weight:600;
+  color:#000;
+  cursor:pointer;
+  transition:.25s;
+}
 
-    .code-text {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.6rem;
-      color: var(--primary);
-      display: block;
-      margin-top: 5px;
-    }
+.input-container button:hover{
+  background:#00d4e6;
+}
 
-    .footer-stats {
-      margin-top: 40px;
-      font-size: 0.85rem;
-      color: #777;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
-  </style>
+/* ===== Result ===== */
+#pair{
+  margin-top:16px;
+  color:#ccc;
+  font-size:14px;
+}
+
+/* ===== Code Display ===== */
+.code-display{
+  background:#000;
+  border:1px solid #00f2ff;
+  color:#00f2ff;
+  padding:12px;
+  border-radius:12px;
+  font-family:monospace;
+  font-size:20px;
+  letter-spacing:2px;
+  cursor:pointer;
+}
+/* ===== Center Text ===== */
+.centered-text{
+  color:white;
+  margin-top:15px;
+  font-weight:bold;
+}
+  
+</style>
 </head>
-<body>
+<div class="bubble-bg"></div>
+<div class="background-circle c1"></div>
+<div class="background-circle c2"></div>
 
-  <div class="bg-visuals">
-    <div class="glow-orb" style="width: 500px; height: 500px; background: var(--secondary); top: -10%; left: -5%;"></div>
-    <div class="glow-orb" style="width: 400px; height: 400px; background: var(--primary); bottom: -10%; right: -5%; animation-delay: -5s;"></div>
+<div class="box">
+  <div class="icon-box"><i class="fas fa-robot"></i></div>
+  <h3>NURO MD V1</h3>
+  <h6 class="h6">Powered By <span>Tharaka Dilshan</span></h6>
+  <p class="desc">Enter WhatsApp number with Country Code</p>
+
+  <div class="input-container">
+    <input type="number" id="number" placeholder="Ex: 9477xxxxxxx">
+    <button id="submit">Get Code</button>
   </div>
 
-  <div id="notification-hub"></div>
+  <main id="pair"></main>
+</div>
 
-  <div class="glass-panel">
-    <i class="fas fa-gem brand-icon"></i>
-    <h1>QUEEN SEYA XMD</h1>
-    <span class="owner-info">BY PAMUDINA RAVIHARA</span>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+<script>
+const pair=document.getElementById("pair");
+const btn=document.getElementById("submit");
+const num=document.getElementById("number");
 
-    <div class="input-wrapper">
-      <input type="number" id="phoneNumber" placeholder="9470604xxxx">
-    </div>
+async function copyCode(){
+  const el=document.getElementById("copy");
+  await navigator.clipboard.writeText(el.innerText);
+  el.innerText="COPIED ✓";
+  setTimeout(()=>location.reload(),800);
+}
 
-    <button class="btn-submit" id="genBtn">Generate Access Code</button>
+btn.onclick=async()=>{
+  if(!num.value){
+    pair.innerHTML="<span style='color:#ff4d4d;font-size:14px;'>Please enter number</span>";
+    return;
+  }
 
-    <div id="pair-display">
-      <small style="color: #aaa; text-transform: uppercase;">Pairing Code</small>
-      <span class="code-text" id="codeVal">LOADING...</span>
-      <small style="color: var(--primary); font-size: 0.7rem;">Click to Copy</small>
-    </div>
+  const number=num.value.replace(/[^0-9]/g,"");
+  if(number.length<10){
+    pair.innerHTML="<span style='color:#ff4d4d;font-size:14px;'>Invalid number</span>";
+    return;
+  }
 
-    <div class="footer-stats">
-      <span><i class="fas fa-shield-check"></i> Encrypted</span>
-      <span><i class="fas fa-bolt"></i> Ultra Fast</span>
-    </div>
-  </div>
+  pair.innerHTML="<span class='loading'><i class='fas fa-spinner fa-spin'></i> Getting Code...</span>";
 
-  <script>
-    const hub = document.getElementById('notification-hub');
-    const genBtn = document.getElementById('genBtn');
-    const phoneInput = document.getElementById('phoneNumber');
-    const display = document.getElementById('pair-display');
-    const codeVal = document.getElementById('codeVal');
+  try{
+    const {data}=await axios(`/code?number=${number}`);
+    const code=data.code || "ERROR";
+    pair.innerHTML=`
+      <div class="code-display" onclick="copyCode()">
+        <span id="copy">${code}</span>
+      </div>
+      <p style="font-size:10px;color:#aaa;margin-top:6px;">Click code to copy</p>
+    `;
+  }catch{
+    pair.innerHTML="<span style='color:red;'>Service Error</span>";
+  }
+};
+  const bg = document.querySelector('.bubble-bg');
 
-    // Advanced Notification Logic
-    function notify(msg, type = 'info') {
-      const toast = document.createElement('div');
-      const icons = { info: 'fa-circle-info', success: 'fa-circle-check', error: 'fa-triangle-exclamation' };
-      
-      toast.className = `toast ${type}`;
-      toast.innerHTML = `
-        <i class="fas ${icons[type]}" style="font-size: 1.2rem;"></i>
-        <div>
-          <div style="font-size: 0.7rem; opacity: 0.6; text-transform: uppercase; font-weight: 700;">System Alert</div>
-          <div style="font-weight: 500;">${msg}</div>
-        </div>
-      `;
-      
-      hub.appendChild(toast);
-      setTimeout(() => toast.classList.add('active'), 10);
-      
-      setTimeout(() => {
-        toast.classList.remove('active');
-        setTimeout(() => toast.remove(), 600);
-      }, 4000);
-    }
+  for(let i = 0; i < 70; i++){
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    bubble.style.left = Math.random() * 100 + 'vw';
+    bubble.style.animationDuration = (4 + Math.random() * 6) + 's';
+    bubble.style.animationDelay = Math.random() * 5 + 's';
+    bubble.style.width = bubble.style.height = (4 + Math.random() * 6) + 'px';
+    bg.appendChild(bubble);
+  }
+</script>
 
-    // Main Operation
-    genBtn.addEventListener('click', async () => {
-      const num = phoneInput.value.trim();
-
-      if (!num || num.length < 10) {
-        notify("Valid phone number required!", "error");
-        return;
-      }
-
-      notify("Connecting to Secure Server...", "info");
-      genBtn.disabled = true;
-      genBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> GENERATING';
-
-      try {
-        let res = await fetch(`/code?number=${num}`);
-        let data = await res.json();
-        
-        if (data.code) {
-          notify("Access Code Generated!", "success");
-          display.style.display = 'block';
-          codeVal.innerText = data.code;
-          
-          display.onclick = async () => {
-            await navigator.clipboard.writeText(data.code);
-            notify("Copied to clipboard!", "success");
-          };
-        } else {
-          throw new Error();
-        }
-      } catch (e) {
-        notify("Server Connection Error!", "error");
-      } finally {
-        genBtn.disabled = false;
-        genBtn.innerHTML = 'Generate Access Code';
-      }
-    });
-
-    // Startup Greeting
-    setTimeout(() => notify("Queen Seya XMD Ready for connection", "info"), 800);
-  </script>
 </body>
 </html>
